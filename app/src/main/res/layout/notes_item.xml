@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="isLocked"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/noteItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:elevation="5dp"
+        android:background="@drawable/curved_bg"
+        android:padding="10dp">
+
+
+        <TextView
+            android:id="@+id/titleId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:fontFamily="@font/be_vietnam_semibold"
+            android:text="Title"
+            android:textColor="@color/settingsImageColor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descriptionId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:fontFamily="@font/be_vietnam_medium"
+            android:text="Description"
+            android:textColor="@color/blockedUserNameColor"
+            android:visibility="@{isLocked? View.GONE : View.VISIBLE, default = visible}"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/titleId"
+            app:layout_constraintTop_toBottomOf="@+id/titleId" />
+
+        <ImageView
+            android:id="@+id/lockId"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            android:padding="2dp"
+            android:visibility="@{isLocked? View.VISIBLE : View.GONE, default = gone}"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/titleId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleId"
+            app:srcCompat="@drawable/locked_icon_new" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>
