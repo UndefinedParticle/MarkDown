@@ -45,6 +45,7 @@
             android:id="@+id/searchIcon"
             android:layout_width="26dp"
             android:layout_height="26dp"
+            android:visibility="gone"
             android:layout_alignParentEnd="true"
             android:src="@drawable/search_icon"
             app:tint="@color/settingsImageColor" />
@@ -60,6 +61,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topLayout" />
 
+    <TextView
+        android:id="@+id/emptyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empty List!"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:fontFamily="@font/be_vietnam_semibold"
+        android:textColor="@color/settingsImageColor"
+        app:layout_constraintTop_toBottomOf="@id/viewLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -79,10 +93,9 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
         android:visibility="visible"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:backgroundTint="#4A94F2"

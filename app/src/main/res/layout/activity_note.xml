@@ -356,6 +356,7 @@
                     android:background="@color/transparent"
                     android:fontFamily="@font/be_vietnam_semibold"
                     android:hint="Title"
+                    android:maxLines="1"
                     android:textColor="@color/settingsImageColor"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -383,14 +384,14 @@
                     android:id="@+id/saveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
                     android:visibility="visible"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:backgroundTint="#4A94F2"
-                    android:background="@drawable/button_bg"
+                    android:backgroundTint="#9FBF7A"
+                    app:fabCustomSize="50dp"
+                    android:tint="@color/black"
                     android:src="@drawable/save_icon" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

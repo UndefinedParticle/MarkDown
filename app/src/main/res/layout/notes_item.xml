@@ -19,53 +19,77 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:elevation="5dp"
         android:background="@drawable/curved_bg"
-        android:padding="10dp">
+        android:elevation="5dp"
+        >
 
 
-        <TextView
-            android:id="@+id/titleId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:padding="5dp"
-            android:fontFamily="@font/be_vietnam_semibold"
-            android:text="Title"
-            android:textColor="@color/settingsImageColor"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/descriptionId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:fontFamily="@font/be_vietnam_medium"
-            android:text="Description"
-            android:textColor="@color/blockedUserNameColor"
-            android:visibility="@{isLocked? View.GONE : View.VISIBLE, default = visible}"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/titleId"
-            app:layout_constraintTop_toBottomOf="@+id/titleId" />
-
-        <ImageView
-            android:id="@+id/lockId"
-            android:layout_width="30dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="10dp"
-            android:padding="2dp"
-            android:visibility="@{isLocked? View.VISIBLE : View.GONE, default = gone}"
-            tools:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/titleId"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/noteItem1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleId"
-            app:srcCompat="@drawable/locked_icon_new" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/titleId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/be_vietnam_semibold"
+                android:maxLines="1"
+                android:text="Title"
+                android:padding="5dp"
+                android:textColor="@color/settingsImageColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/isPinned"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/descriptionId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/be_vietnam_medium"
+                android:maxLines="2"
+                android:padding="5dp"
+                android:text="Description"
+                android:textColor="@color/blockedUserNameColor"
+                android:textSize="18sp"
+                android:visibility="@{isLocked? View.GONE : View.VISIBLE, default = visible}"
+                app:layout_constraintStart_toStartOf="@+id/titleId"
+                app:layout_constraintTop_toBottomOf="@+id/titleId" />
+
+            <ImageView
+                android:id="@+id/lockId"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:padding="2dp"
+                android:visibility="@{isLocked? View.VISIBLE : View.GONE, default = gone}"
+                app:layout_constraintBottom_toBottomOf="@+id/titleId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/titleId"
+                app:srcCompat="@drawable/locked_icon_new"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/isPinned"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/titleId"
+                app:layout_constraintBottom_toBottomOf="@+id/titleId"
+                app:srcCompat="@drawable/pinned_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
