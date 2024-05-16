@@ -1,16 +1,20 @@
 package com.chinmoy09ine.markdown.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.chinmoy09ine.markdown.ConfirmPasswordDialog
 import com.chinmoy09ine.markdown.R
 import com.chinmoy09ine.markdown.database.NotesTable
 import com.chinmoy09ine.markdown.databinding.ActivityNoteBinding
@@ -158,7 +162,13 @@ class NoteActivity : AppCompatActivity() {
 
             Log.d("notesTable", "save noteId: $noteId")
 
+            if(binding.titleId.text.toString().trim().isEmpty()){
+                Toast.makeText(this@NoteActivity, "Title can't be empty!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if(comingFrom == "add"){
+
                 note.noteId = binding.titleId.text.toString().trim() + System.currentTimeMillis()
                 note.title = binding.titleId.text.toString().trim()
                 note.description = binding.descriptionId.text.toString().trim()
@@ -176,6 +186,7 @@ class NoteActivity : AppCompatActivity() {
                 }else{
                     note.isPinned = 0
                 }
+
 
                 mainViewModel.insertNote(note)
             }else{
@@ -207,12 +218,24 @@ class NoteActivity : AppCompatActivity() {
         binding.lockButton.setOnClickListener {
 
             if(!isLocked) {
-                binding.lockButton.setImageResource(R.drawable.locked_icon_new)
+
+                val password = getSharedPreferences(
+                    "MARKDOWN_PASSWORD",
+                    Context.MODE_PRIVATE
+                ).getString("notePassword", "").toString()
+
+                if (password.isEmpty()) {
+                    val dialogFragment = ConfirmPasswordDialog(this@NoteActivity, "", mainViewModel)
+                    dialogFragment.show(supportFragmentManager, "confirmPasswordDialog")
+                } else{
+                    binding.lockButton.setImageResource(R.drawable.locked_icon_new)
+                    isLocked = !isLocked
+                }
+
             }else{
                 binding.lockButton.setImageResource(R.drawable.open_lock)
+                isLocked = !isLocked
             }
-
-            isLocked = !isLocked
 
         }
 
@@ -248,6 +271,20 @@ class NoteActivity : AppCompatActivity() {
             shareNote(text)
 
         }
+
+        observeLiveData()
+    }
+
+    private fun observeLiveData(){
+
+        mainViewModel.hasPassword.observe(this, Observer {
+
+            if (it) {
+                binding.lockButton.setImageResource(R.drawable.locked_icon_new)
+                isLocked = !isLocked
+            }
+
+        })
 
     }
 

@@ -10,7 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.chinmoy09ine.markdown.ConfirmPasswordDialog
 import com.chinmoy09ine.markdown.R
 import com.chinmoy09ine.markdown.activities.NoteActivity
 import com.chinmoy09ine.markdown.database.NotesTable
@@ -63,7 +65,7 @@ class NotesAdapter(private val myContext: Context, private var list: ArrayList<N
                 drawable.colorFilter = PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN)
 
                 holder.binding.noteItem.background = drawable*/
-                changeBg(R.color.settingBgColor, holder.binding.noteItem)
+                changeBg(R.color.commentBgColor, holder.binding.noteItem)
             }
             1 -> {
                 //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.red))
@@ -95,9 +97,18 @@ class NotesAdapter(private val myContext: Context, private var list: ArrayList<N
 
         holder.binding.noteItem.setOnClickListener {
 
-            myContext.startActivity(Intent(myContext, NoteActivity::class.java)
-                .putExtra("noteId", note.noteId)
-                .putExtra("comingFrom", "adapter"))
+            if(note.isLocked != 0){
+                val dialogFragment = ConfirmPasswordDialog(myContext, note.noteId, null)
+                val fragmentManager = (myContext as FragmentActivity).supportFragmentManager
+                dialogFragment.show(fragmentManager, "confirmPasswordDialog")
+            }else {
+                myContext.startActivity(
+                    Intent(myContext, NoteActivity::class.java)
+                        .putExtra("noteId", note.noteId)
+                        .putExtra("comingFrom", "adapter")
+                )
+            }
+
 
         }
 

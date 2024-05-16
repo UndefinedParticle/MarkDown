@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.chinmoy09ine.markdown.database.NotesTable
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +14,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
     private val mainRepository: MainRepository = MainRepository(application)
     var getAllNotes: LiveData<List<NotesTable>> = mainRepository.getAllNotes
+    var hasPassword: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun insertNote(note: NotesTable) = viewModelScope.launch(Dispatchers.IO) {
         Log.d("notesTable", "insertTitle(viewModel): " + note.title)

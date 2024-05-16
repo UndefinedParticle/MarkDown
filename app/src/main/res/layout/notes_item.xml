@@ -75,6 +75,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/titleId"
                 app:srcCompat="@drawable/locked_icon_new"
+                app:tint="@color/settingsImageColor"
                 tools:visibility="visible" />
 
             <ImageView
@@ -86,6 +87,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/titleId"
                 app:layout_constraintBottom_toBottomOf="@+id/titleId"
+                app:tint="@color/settingsImageColor"
                 app:srcCompat="@drawable/pinned_icon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

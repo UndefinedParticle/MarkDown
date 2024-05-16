@@ -1,5 +1,6 @@
 package com.chinmoy09ine.markdown.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -34,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         changeStatusBarColor()
+        /*getSharedPreferences("MARKDOWN_PASSWORD", Context.MODE_PRIVATE)
+            .edit()
+            .clear()
+            .apply()*/
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         notes = NotesTable()
