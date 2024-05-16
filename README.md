@@ -21,9 +21,9 @@ Built with Kotlin, Room Database, DataBinding, and RecyclerView for a seamless u
 
 <p>
 
-<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/home.png?raw=true" alt="LogIn" width = "400" >
-<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/note.png?raw=true" alt="Register" width = "400" >
-<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/password.png?raw=true" alt="Home" width = "400" >
+<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/home.png?raw=true" alt="Home" width = "400" >
+<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/note.png?raw=true" alt="Note" width = "400" >
+<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/password.png?raw=true" alt="Password" width = "400" >
 
 </p>
 
