@@ -59,36 +59,24 @@ class NotesAdapter(private val myContext: Context, private var list: ArrayList<N
         when(note.bgColor.toInt()){
 
             0 -> {
-                //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.darkModeBG))
-                /*val drawable: Drawable = ContextCompat.getDrawable(myContext, R.drawable.custom_bg)!!
-                val tintColor = ContextCompat.getColor(myContext, R.color.darkModeBG)
-                drawable.colorFilter = PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN)
-
-                holder.binding.noteItem.background = drawable*/
                 changeBg(R.color.commentBgColor, holder.binding.noteItem)
             }
             1 -> {
-                //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.red))
                 changeBg(R.color.red, holder.binding.noteItem)
             }
             2 -> {
-                //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.greenColor))
                 changeBg(R.color.greenColor, holder.binding.noteItem)
             }
             3 -> {
-                //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.blueColor))
                 changeBg(R.color.blueColor, holder.binding.noteItem)
             }
             4 -> {
-                //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.yellowColor))
                 changeBg(R.color.yellowColor, holder.binding.noteItem)
             }
             5 -> {
-                //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.orangeColor))
                 changeBg(R.color.orangeColor, holder.binding.noteItem)
             }
             6 -> {
-                //holder.binding.noteItem.setBackgroundColor(myContext.resources.getColor(R.color.violateColor))
                 changeBg(R.color.violateColor, holder.binding.noteItem)
             }
 

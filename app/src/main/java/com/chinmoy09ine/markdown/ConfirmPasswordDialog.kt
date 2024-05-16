@@ -215,10 +215,10 @@ class ConfirmPasswordDialog(private val myContext: Context, private val noteId: 
 
             if(otp1 == password){
                 if(otp.length != 4){
-                    binding.invalidOtp.visibility = View.VISIBLE
+                    binding.invalidPassword.visibility = View.VISIBLE
                     return
                 }
-                binding.invalidOtp.visibility = View.GONE
+                binding.invalidPassword.visibility = View.GONE
 
                 myContext.getSharedPreferences("MARKDOWN_PASSWORD", Context.MODE_PRIVATE)
                     .edit()
@@ -250,11 +250,11 @@ class ConfirmPasswordDialog(private val myContext: Context, private val noteId: 
         }
 
         if(otp.isEmpty() || otp != password){
-            binding.invalidOtp.visibility = View.VISIBLE
+            binding.invalidPassword.visibility = View.VISIBLE
             return
         }
 
-        binding.invalidOtp.visibility = View.GONE
+        binding.invalidPassword.visibility = View.GONE
 
         dialog?.dismiss()
 
