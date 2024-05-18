@@ -15,6 +15,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     private val mainRepository: MainRepository = MainRepository(application)
     var getAllNotes: LiveData<List<NotesTable>> = mainRepository.getAllNotes
     var hasPassword: MutableLiveData<Boolean> = MutableLiveData(false)
+    var deleting: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun insertNote(note: NotesTable) = viewModelScope.launch(Dispatchers.IO) {
         Log.d("notesTable", "insertTitle(viewModel): " + note.title)

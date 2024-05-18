@@ -26,8 +26,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var notes: NotesTable
     private lateinit var notesList:ArrayList<NotesTable>
     private lateinit var notesAdapter: NotesAdapter
-    private lateinit var mainViewModel: MainViewModel
 
+    companion object{
+
+        lateinit var mainViewModel: MainViewModel
+            private set
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +63,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, NoteActivity::class.java)
                 .putExtra("comingFrom", "add"))
 
+        }
+
+        binding.deleteButton.setOnClickListener {
+
+            for(item in notesList){
+                if(item.selected){
+                    mainViewModel.deleteNote(item.noteId)
+                }
+            }
+
+            mainViewModel.deleting.value = false
         }
 
         observeLiveData()
@@ -95,6 +111,16 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+        mainViewModel.deleting.observe(this, Observer {
+
+            if(it) {
+                binding.deleteLayout.visibility = View.VISIBLE
+            }else{
+                binding.deleteLayout.visibility = View.GONE
+            }
+
+        })
+
     }
 
 
@@ -105,6 +131,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        finishAffinity()
+        if (mainViewModel.deleting.value == true) {
+            mainViewModel.deleting.value = false
+
+            notesAdapter.updateItemsOnLongClick()
+        } else {
+            finishAffinity()
+        }
     }
 }

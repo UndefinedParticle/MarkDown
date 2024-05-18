@@ -61,12 +61,13 @@
     <color name="instagramColor">#C13584</color>
     <color name="transparentColor">#00000000</color>
     <color name="customBlueColor">#4A94F2</color>
-    <color name="red">#FF0000</color>
-    <color name="greenColor">#4CAF50</color>
-    <color name="blueColor">#4A94F2</color>
-    <color name="yellowColor">#FEE400</color>
-    <color name="orangeColor">#FF9800</color>
-    <color name="violateColor">#673AB7</color>
+    <color name="red">#890303</color>
+    <color name="greenColor">#1E9A23</color>
+    <color name="blueColor">#227CEE</color>
+    <color name="yellowColor">#E6D32E</color>
+    <color name="orangeColor">#D2820F</color>
+    <color name="violateColor">#4A1B9F</color>
+    <color name="circleBgColor">#CEC8C8</color>
 
 
 </resources>

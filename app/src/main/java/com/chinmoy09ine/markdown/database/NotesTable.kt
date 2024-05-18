@@ -29,5 +29,7 @@ data class NotesTable(
     var isPinned: Long = 0, // 0 -> false, !0 -> true
 
     @ColumnInfo
-    var bgColor: String = "0"
+    var bgColor: String = "0",
+    var deleting: Boolean = false,
+    var selected: Boolean = false
 )

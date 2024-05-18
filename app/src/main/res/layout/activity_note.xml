@@ -356,6 +356,7 @@
                     android:background="@color/transparent"
                     android:fontFamily="@font/be_vietnam_semibold"
                     android:hint="Title"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/settingsImageColor"
                     app:layout_constraintTop_toTopOf="parent"
