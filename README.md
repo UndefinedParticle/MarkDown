@@ -10,7 +10,7 @@ This repository is still under development and I will continue to add more featu
 ## Key Features
 
 - **User-Friendly Interface**: Clean UI with dark mode support.
-- **Pin and Lock Notes**: Pin important notes to the top and lock notes for security with password confirmation.
+- **Edit Notes**: User can pin important notes to the top & lock notes for security with password confirmation, also they can delete them.
 - **Customizable Appearance**: Assign different background colors to notes for better organization.
 - **Database Integration**: Uses Room database for local storage, ensuring data persistence and reliability.
 - **Security**: Password-protected notes for enhanced privacy.
