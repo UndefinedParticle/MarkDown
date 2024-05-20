@@ -267,8 +267,9 @@ class NoteActivity : AppCompatActivity() {
 
         binding.shareButton.setOnClickListener {
 
-            val text: String = binding.titleId.text.toString().trim() + "\n\n" + binding.descriptionId.text.toString().trim()
-            shareNote(text)
+            val title: String = binding.titleId.text.toString().trim()
+            val description: String = binding.descriptionId.text.toString().trim()
+            shareNote(title, description)
 
         }
 
@@ -378,7 +379,8 @@ class NoteActivity : AppCompatActivity() {
         binding.orangeColor1.background = null
         binding.violateColor1.background = null
     }
-    private fun shareNote(text: String) {
+    private fun shareNote(title: String, description: String) {
+        val text = title + "\n\n" + description
         // Create an Intent with ACTION_SEND
         val shareIntent = Intent(Intent.ACTION_SEND)
 
@@ -389,7 +391,7 @@ class NoteActivity : AppCompatActivity() {
         shareIntent.putExtra(Intent.EXTRA_TEXT, text)
 
         // Optionally, add a subject to the shared content
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Shared Note")
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, title)
 
         // Launch the Intent to share the content
         startActivity(Intent.createChooser(shareIntent, "Share Note"))
