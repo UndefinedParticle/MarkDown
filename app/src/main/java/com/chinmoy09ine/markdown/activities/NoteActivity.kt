@@ -33,6 +33,8 @@ class NoteActivity : AppCompatActivity() {
     private var noteId = ""
     private var comingFrom = ""
     private var bgColor = "0"
+    private var prevTitle = ""
+    private var prevDesc = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +82,8 @@ class NoteActivity : AppCompatActivity() {
 
                 binding.titleId.setText(note.title)
                 binding.descriptionId.setText(note.description)
-
+                prevTitle = note.title
+                prevDesc = note.description
                 bgColor = note.bgColor
 
                 Log.d("notesTable", "bgColor: $bgColor")
@@ -160,58 +163,7 @@ class NoteActivity : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener {
 
-            Log.d("notesTable", "save noteId: $noteId")
-
-            if(binding.titleId.text.toString().trim().isEmpty()){
-                Toast.makeText(this@NoteActivity, "Title can't be empty!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if(comingFrom == "add"){
-
-                note.noteId = binding.titleId.text.toString().trim() + System.currentTimeMillis()
-                note.title = binding.titleId.text.toString().trim()
-                note.description = binding.descriptionId.text.toString().trim()
-                note.createdAt = System.currentTimeMillis()
-                note.updatedAt = System.currentTimeMillis()
-                note.bgColor = bgColor
-                if(isLocked){
-                    note.isLocked = 1
-                }else{
-                    note.isLocked = 0
-                }
-
-                if(isPinned){
-                    note.isPinned = System.currentTimeMillis()
-                }else{
-                    note.isPinned = 0
-                }
-
-
-                mainViewModel.insertNote(note)
-            }else{
-                note.title = binding.titleId.text.toString().trim()
-                note.description = binding.descriptionId.text.toString().trim()
-                note.updatedAt = System.currentTimeMillis()
-                note.bgColor = bgColor
-                if(isLocked){
-                    note.isLocked = 1
-                }else{
-                    note.isLocked = 0
-                }
-
-                if(isPinned){
-                    note.isPinned = System.currentTimeMillis()
-                }else{
-                    note.isPinned = 0
-                }
-
-                mainViewModel.updateNote(noteId, note.title, note.description, note.updatedAt, note.isLocked, note.isPinned, note.bgColor)
-            }
-
-
-
-            onBackPressed()
+            onSave()
 
         }
 
@@ -274,6 +226,59 @@ class NoteActivity : AppCompatActivity() {
         }
 
         observeLiveData()
+    }
+
+    private fun onSave() {
+        Log.d("notesTable", "save noteId: $noteId")
+
+        if(binding.titleId.text.toString().trim().isEmpty()){
+            Toast.makeText(this@NoteActivity, "Title can't be empty!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if(comingFrom == "add"){
+
+            note.noteId = removeSpaces(binding.titleId.text.toString().trim()) + System.currentTimeMillis()
+            note.title = binding.titleId.text.toString().trim()
+            note.description = binding.descriptionId.text.toString().trim()
+            note.createdAt = System.currentTimeMillis()
+            note.updatedAt = System.currentTimeMillis()
+            note.bgColor = bgColor
+            if(isLocked){
+                note.isLocked = 1
+            }else{
+                note.isLocked = 0
+            }
+
+            if(isPinned){
+                note.isPinned = System.currentTimeMillis()
+            }else{
+                note.isPinned = 0
+            }
+
+
+            mainViewModel.insertNote(note)
+        }else{
+            note.title = removeSpaces(binding.titleId.text.toString().trim())
+            note.description = binding.descriptionId.text.toString().trim()
+            note.updatedAt = System.currentTimeMillis()
+            note.bgColor = bgColor
+            if(isLocked){
+                note.isLocked = 1
+            }else{
+                note.isLocked = 0
+            }
+
+            if(isPinned){
+                note.isPinned = System.currentTimeMillis()
+            }else{
+                note.isPinned = 0
+            }
+
+            mainViewModel.updateNote(noteId, note.title, note.description, note.updatedAt, note.isLocked, note.isPinned, note.bgColor)
+        }
+
+        finish()
     }
 
     private fun observeLiveData(){
@@ -403,8 +408,20 @@ class NoteActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, colorCode)
     }
 
+    fun removeSpaces(input: String): String {
+        return input.replace("\\s".toRegex(), "")
+    }
+
+
     override fun onBackPressed() {
-        finish()
+        val title = binding.titleId.text.toString().trim()
+        val description = binding.descriptionId.text.toString().trim()
+
+        if(title.isNotEmpty() && description.isNotEmpty() && (prevTitle != title || prevDesc != description)){
+            onSave()
+        }else{
+            finish()
+        }
     }
 
 }
