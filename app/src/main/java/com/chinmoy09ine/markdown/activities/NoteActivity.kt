@@ -259,7 +259,7 @@ class NoteActivity : AppCompatActivity() {
 
             mainViewModel.insertNote(note)
         }else{
-            note.title = removeSpaces(binding.titleId.text.toString().trim())
+            note.title = binding.titleId.text.toString().trim()
             note.description = binding.descriptionId.text.toString().trim()
             note.updatedAt = System.currentTimeMillis()
             note.bgColor = bgColor
