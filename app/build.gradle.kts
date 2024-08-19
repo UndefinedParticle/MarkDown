@@ -74,4 +74,7 @@ dependencies {
     kapt ("androidx.room:room-compiler:2.6.1")
     androidTestImplementation ("androidx.room:room-testing:2.6.1")
 
+    //Paging
+    implementation ("androidx.paging:paging-runtime:3.3.0")
+
 }

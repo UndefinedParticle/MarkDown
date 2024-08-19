@@ -39,7 +39,7 @@
             android:fontFamily="@font/be_vietnam_semibold"
             android:textAlignment="center"
             android:textColor="@color/settingsImageColor"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/searchIcon"
@@ -98,7 +98,6 @@
         android:layout_height="0dp"
         android:padding="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/deleteLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewLine"
@@ -106,43 +105,49 @@
         tools:listitem="@layout/notes_item"
         tools:visibility="visible" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <LinearLayout
         android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        tools:visibility="visible"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:background="@drawable/curved_bg"
+        android:backgroundTint="@color/appPrimaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:backgroundTint="#4A94F2"
-        android:src="@drawable/plus_icon" />
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/plus_icon"
+            app:tint="@color/white" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/deleteLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/darkModeBG"
-        android:gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
         android:visibility="gone"
-        tools:visibility="visible"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="25dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        tools:visibility="gone"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:background="@drawable/curved_bg"
+        android:backgroundTint="@color/appPrimaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
 
         <ImageView
-            android:id="@+id/deleteButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:elevation="10dp"
-            android:visibility="visible"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/delete_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/settingsImageColor"
-            tools:visibility="visible" />
+            app:tint="@color/white" />
 
     </LinearLayout>
 

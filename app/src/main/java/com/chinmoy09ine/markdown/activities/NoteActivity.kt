@@ -1,8 +1,10 @@
 package com.chinmoy09ine.markdown.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -20,6 +22,7 @@ import com.chinmoy09ine.markdown.database.NotesTable
 import com.chinmoy09ine.markdown.databinding.ActivityNoteBinding
 import com.chinmoy09ine.markdown.models.MainViewModel
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 
 class NoteActivity : AppCompatActivity() {
@@ -35,6 +38,8 @@ class NoteActivity : AppCompatActivity() {
     private var bgColor = "0"
     private var prevTitle = ""
     private var prevDesc = "0"
+    private val REQUEST_CODE_SPEECH_INPUT = 100
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -225,14 +230,49 @@ class NoteActivity : AppCompatActivity() {
 
         }
 
+        binding.recordVoice.setOnClickListener{
+
+            startVoiceInput()
+
+        }
+
         observeLiveData()
     }
+
+    private fun startVoiceInput() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak now...")
+
+        try {
+            startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_SPEECH_INPUT && resultCode == Activity.RESULT_OK && data != null) {
+            val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            if (!result.isNullOrEmpty()) {
+                binding.descriptionId.append(result[0])
+            }
+        }
+    }
+
 
     private fun onSave() {
         Log.d("notesTable", "save noteId: $noteId")
 
         if(binding.titleId.text.toString().trim().isEmpty()){
-            Toast.makeText(this@NoteActivity, "Title can't be empty!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@NoteActivity, "Please give a title!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if(binding.descriptionId.text.toString().trim().isEmpty()){
+            Toast.makeText(this@NoteActivity, "Please give a description!", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -408,7 +448,7 @@ class NoteActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, colorCode)
     }
 
-    fun removeSpaces(input: String): String {
+    private fun removeSpaces(input: String): String {
         return input.replace("\\s".toRegex(), "")
     }
 

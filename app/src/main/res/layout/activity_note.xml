@@ -9,6 +9,8 @@
         <variable
             name="clickHandler"
             type="com.chinmoy09ine.markdown.activities.NoteActivity.ClickHandler" />
+        
+        <import type="android.view.View"/>
 
 
     </data>
@@ -23,9 +25,9 @@
             android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="17dp"
+            android:paddingStart="15dp"
             android:paddingTop="14dp"
-            android:paddingEnd="23dp"
+            android:paddingEnd="15dp"
             android:paddingBottom="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,8 +35,8 @@
 
             <ImageView
                 android:id="@+id/backButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/left_arrow"
                 app:tint="@color/settingsImageColor" />
@@ -75,6 +77,14 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="15dp"
                     android:src="@drawable/share_icon"
+                    app:tint="@color/settingsImageColor" />
+
+                <ImageView
+                    android:id="@+id/saveButton"
+                    android:layout_width="38dp"
+                    android:layout_height="30dp"
+                    android:scaleType="center"
+                    android:src="@drawable/tick_icon"
                     app:tint="@color/settingsImageColor" />
 
             </LinearLayout>
@@ -359,6 +369,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:padding="10dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -401,7 +412,19 @@
 
                 </androidx.core.widget.NestedScrollView>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/recordVoice"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:lottie_rawRes="@raw/recorder_green_new"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/saveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -413,7 +436,7 @@
                     android:backgroundTint="#9FBF7A"
                     app:fabCustomSize="50dp"
                     android:tint="@color/black"
-                    android:src="@drawable/save_icon" />
+                    android:src="@drawable/save_icon" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

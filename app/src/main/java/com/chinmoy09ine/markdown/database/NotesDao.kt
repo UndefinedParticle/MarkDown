@@ -33,4 +33,8 @@ interface NotesDao {
     @Query("SELECT * FROM NOTES_TABLE ORDER BY isPinned DESC")
     fun getAllNotes(): LiveData<List<NotesTable>>
 
+    @Query("SELECT * FROM NOTES_TABLE ORDER BY isPinned DESC, updatedAt DESC LIMIT :limit OFFSET :offset")
+    suspend fun getNotesPaged(offset: Int, limit: Int): List<NotesTable>
+
+
 }

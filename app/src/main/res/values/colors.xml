@@ -14,6 +14,7 @@
 
 
     <color name="post_blue">#5597FF</color>
+    <color name="appPrimaryColor">#4A94F2</color>
     <color name="settingsImageColor">#000000</color>
     <color name="darkModeBG">#FFFFFF</color>
     <color name="blockedUserNameColor">#6E6E6E</color>

@@ -1,18 +1,13 @@
 package com.chinmoy09ine.markdown.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.chinmoy09ine.markdown.R
@@ -65,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        binding.deleteButton.setOnClickListener {
+        binding.deleteLayout.setOnClickListener {
 
             for(item in notesList){
                 if(item.selected){
@@ -115,8 +110,10 @@ class MainActivity : AppCompatActivity() {
 
             if(it) {
                 binding.deleteLayout.visibility = View.VISIBLE
+                binding.addButton.visibility = View.GONE
             }else{
                 binding.deleteLayout.visibility = View.GONE
+                binding.addButton.visibility = View.VISIBLE
             }
 
         })

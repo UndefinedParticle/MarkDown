@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="appPrimaryColor">#4A94F2</color>
     <color name="settingsImageColor">#F5F5F5</color>
     <color name="darkModeBG">#121212</color>
     <color name="blockedUserNameColor">#C3C3C3</color>
