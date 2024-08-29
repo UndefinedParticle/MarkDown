@@ -9,6 +9,7 @@ This repository is still under development and I will continue to add more featu
 
 ## Key Features
 
+- **Voice Recording Integration**: Users can convert their voice to text.
 - **User-Friendly Interface**: Clean UI with dark mode support.
 - **Edit Notes**: User can pin important notes to the top & lock notes for security with password confirmation, also they can delete them.
 - **Customizable Appearance**: Assign different background colors to notes for better organization.
@@ -22,7 +23,7 @@ Built with Kotlin, Room Database, DataBinding, and RecyclerView for a seamless u
 <p>
 
 <img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/home.png?raw=true" alt="Home" width = "400" >
-<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/note.png?raw=true" alt="Note" width = "400" >
+<img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/note_new.png?raw=true" alt="Note" width = "400" >
 <img src="https://github.com/UndefinedParticle/MarkDown/blob/main/Screenshots/password.png?raw=true" alt="Password" width = "400" >
 
 </p>
